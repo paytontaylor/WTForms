@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %}
+<title>Pets</title>
+{% endblock %} {% block content %}
+<div class="container">
+    <div class="column">
+        <h1 class="text-center">PETS</h1>
+        <ul class="list-group list-group-horizontal">
+            {% for pet in pets %}
+            {% if pet %}
+            <li class="list-group-item" width="500" height="500">
+                <img
+                    class="img-thumbnail rounded"
+                    src="{{pet.photo_url}}"
+                    alt="Image of {{pet.name}}"
+                    height="200"
+                    width="200"
+                />
+                <p>
+                    <a href="/{{pet.id}}" class="text-info">{{pet.name}}</a> {%
+                    if pet.available %}
+                    <b> is available! </b>
+                    {% endif %}
+                    {% if pet.age %}
+                    <p> Age: {{pet.age}}</p>
+                    {% endif %}
+                    {% if pet.notes %}
+                    <p> {{pet.notes}} </p>
+                    {% endif %}
+                </p>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <br />
+        <a href="/add" class="btn btn-info mt-5"> Add Pet</a>
+
+    </div>
+</div>
+{% endblock %}
